@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宝贝情人节快乐！ 💖</title>
     <style>
-        /* 全局样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: "微软雅黑", "Microsoft YaHei", sans-serif;
         }
-
         body {
             background-color: #ffe6ea;
             min-height: 100vh;
@@ -21,16 +19,12 @@
             align-items: center;
             padding: 20px;
         }
-
-        /* 标题样式 */
         .title {
             color: #ff5c8a;
             font-size: 28px;
             margin: 30px 0;
             text-align: center;
         }
-
-        /* 按钮通用样式 */
         button {
             background-color: #ff8da1;
             color: white;
@@ -39,20 +33,15 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
         button:hover {
             background-color: #ff6b8e;
         }
-
-        /* 主页按钮样式 */
         .home-btn {
             font-size: 18px;
             padding: 15px 30px;
             width: 250px;
             margin: 15px 0;
         }
-
-        /* 功能页面样式 */
         .page {
             width: 100%;
             max-width: 500px;
@@ -60,16 +49,12 @@
             flex-direction: column;
             align-items: center;
         }
-
-        /* 问题/提示文本 */
         .question {
             color: #553c44;
             font-size: 20px;
             margin: 20px 0;
             text-align: center;
         }
-
-        /* 输入框样式 */
         input {
             font-size: 18px;
             padding: 10px;
@@ -80,19 +65,19 @@
             margin: 10px 0;
             outline: none;
         }
-
-        input:focus {
-            border-color: #ff8da1;
+        .option-btn {
+            font-size: 18px;
+            padding: 12px 20px;
+            width: 220px;
+            margin: 8px 0;
+            border-radius: 8px;
         }
-
-        /* 结果提示 */
         .result {
             color: #ff477e;
             font-size: 18px;
             margin: 15px 0;
+            text-align: center;
         }
-
-        /* 功能按钮样式 */
         .func-btn {
             font-size: 16px;
             padding: 10px 20px;
@@ -100,179 +85,381 @@
             min-width: 100px;
         }
 
-        /* 隐藏元素 */
+        /* 电影样式 */
+        .movie-container {
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            width: 280px;
+        }
+        .movie-text {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ff8da1;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px 5px 20px 5px;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(255, 92, 138, 0.3);
+            z-index: 10;
+        }
+        .movie-img {
+            width: 280px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(255, 92, 138, 0.2);
+            border: 4px solid #ff8da1;
+            clip-path: polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%);
+        }
+
+        /* 结尾文字 */
+        .movie-end-text, .travel-success, .quiz-success {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff477e;
+            text-align: center;
+            margin: 40px 0;
+            padding: 22px 30px;
+            background: linear-gradient(135deg, #fff0f5, #ffe6ea);
+            border-radius: 20px;
+            border: 3px solid #ff8da1;
+            box-shadow: 0 6px 15px rgba(255, 100, 138, 0.2);
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+        .movie-end-text::before,
+        .travel-success::before,
+        .quiz-success::before {
+            content: " ✨ ❤️ ✨ ";
+            display: block;
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #ff6b8e;
+        }
+
+        .travel-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .travel-img {
+            width: 280px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(255, 92, 138, 0.2);
+        }
         .hidden {
+            display: none;
+        }
+        .travel-success-btn {
+            font-size: 18px;
+            padding: 12px 25px;
+            background-color: #ff8da1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* 情话弹窗 */
+        .love-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 25px 20px;
+            border-radius: 20px 5px 20px 5px;
+            border: 3px solid #ff8da1;
+            box-shadow: 0 8px 20px rgba(255, 92, 138, 0.3);
+            z-index: 100;
+            text-align: center;
+            width: 80%;
+            max-width: 300px;
+        }
+        .popup-text {
+            color: #ff5c8a;
+            font-size: 20px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .popup-btn {
+            background-color: #ff8da1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .popup-btn:hover {
+            background-color: #ff6b8e;
+        }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 230, 234, 0.8);
+            z-index: 99;
             display: none;
         }
     </style>
 </head>
 <body>
-    <!-- 主页 -->
-    <div id="home-page" class="page">
-        <h1 class="title">💌 情人节快乐 💌</h1>
-        <button class="home-btn" onclick="showPage('quiz-page')">🧠 小问答</button>
-        <button class="home-btn" onclick="showPage('words-page')">✨ 甜甜的情话</button>
-        <button class="home-btn" onclick="showPage('movie-page')">🎬 我们一起看过的电影</button>
-        <button class="home-btn" onclick="showPage('travel-page')">🌍 旅行猜猜猜</button>
-    </div>
 
-    <!-- 问答页面 -->
-    <div id="quiz-page" class="page hidden">
-        <h1 class="title">🧠 小测试</h1>
+<!-- 主页 -->
+<div id="home-page" class="page">
+    <h1 class="title">💌 情人节快乐 💌</h1>
+    <button class="home-btn" onclick="showPage('quiz-page')">🧠 小测试</button>
+    <button class="home-btn" onclick="showPage('words-page')">✨ 甜甜的情话</button>
+    <button class="home-btn" onclick="showPage('movie-page')">🎬 我们一起看过的电影</button>
+    <button class="home-btn" onclick="showPage('travel-page')">🌍 旅行猜猜猜</button>
+</div>
+
+<!-- 小测试 -->
+<div id="quiz-page" class="page hidden">
+    <h1 class="title">🧠 小测试</h1>
+    <div id="q1">
         <p class="question">我们在一起多少天啦？</p>
-        <input type="text" id="quiz-answer" placeholder="输入答案">
-        <p class="result" id="quiz-result"></p>
-        <button class="func-btn" onclick="checkQuizAnswer()">确定</button>
-        <button class="func-btn" onclick="showPage('home-page')">返回</button>
+        <input type="text" id="ans1" placeholder="输入答案">
+        <button class="func-btn" onclick="checkQ1()">确定</button>
     </div>
-
-    <!-- 情话页面 -->
-    <div id="words-page" class="page hidden">
-        <h1 class="title">✨ 甜甜的情话</h1>
-        <button class="func-btn" style="font-size: 18px; padding: 15px 30px;" onclick="showNextWord()">下一句</button>
-        <button class="func-btn" onclick="showPage('home-page')">返回</button>
+    <div id="q2" class="hidden">
+        <p class="question">你的宝宝吃火锅最喜欢吃什么？</p>
+        <button class="option-btn" onclick="checkQ2('A')">A. 毛肚</button>
+        <button class="option-btn" onclick="checkQ2('B')">B. 虾滑</button>
+        <button class="option-btn" onclick="checkQ2('C')">C. 鸭血</button>
+        <button class="option-btn" onclick="checkQ2('D')">D. 金针菇</button>
     </div>
-
-    <!-- 电影页面 -->
-    <div id="movie-page" class="page hidden">
-        <h1 class="title">🎬 那些我们在电影院看的电影</h1>
-        <button class="func-btn" style="font-size: 18px; padding: 15px 30px;" onclick="showNextMovie()">下一张</button>
-        <button class="func-btn" onclick="showPage('home-page')">返回主页</button>
+    <div id="q3" class="hidden">
+        <p class="question">我的生理期大概是什么时候来？</p>
+        <button class="option-btn" onclick="checkQ3('A')">A. 每月1-7号</button>
+        <button class="option-btn" onclick="checkQ3('B')">B. 每月8-15号</button>
+        <button class="option-btn" onclick="checkQ3('C')">C. 每月16-23号</button>
+        <button class="option-btn" onclick="checkQ3('D')">D. 每月24-30号</button>
     </div>
+    <p class="result" id="quiz-result"></p>
+    <div class="quiz-success" id="quiz-success">全部答对！你最懂我啦 ❤️</div>
+    <button class="func-btn" onclick="showPage('home-page')">返回主页</button>
+</div>
 
-    <!-- 旅行猜猜猜页面 -->
-    <div id="travel-page" class="page hidden">
-        <h1 class="title">🌍 猜一猜这是哪里</h1>
-        <p class="question" id="travel-question">第1题：山城、火锅、8D魔幻城市</p>
-        <input type="text" id="travel-answer" placeholder="输入答案">
-        <p class="result" id="travel-result"></p>
-        <button class="func-btn" onclick="checkTravelAnswer()">提交答案</button>
-        <button class="func-btn" onclick="resetTravelQuiz()">返回主页</button>
+<!-- 情话页面 -->
+<div id="words-page" class="page hidden">
+    <h1 class="title">✨ 甜甜的情话</h1>
+    <button class="func-btn" style="font-size: 18px; padding: 15px 30px;" onclick="showNextWord()">下一句</button>
+    <button class="func-btn" onclick="showPage('home-page')">返回</button>
+</div>
+
+<!-- 电影页面 -->
+<div id="movie-page" class="page hidden">
+    <h1 class="title">🎬 那些我们在电影院看的电影</h1>
+    <div class="movie-container">
+        <div class="movie-text" id="movie-text"></div>
+        <img id="movie-img" class="movie-img" alt="电影海报">
     </div>
+    <div class="movie-end-text" id="movie-end-text">电影看完啦，我们去看未来吧</div>
+    <button id="movie-next-btn" class="func-btn" style="font-size: 18px; padding: 15px 30px;" onclick="showNextMovie()">下一张</button>
+    <button class="func-btn" onclick="showPage('home-page')">返回主页</button>
+</div>
 
-    <script>
-        // 全局变量
-        let wordIndex = 0;
-        let movieIndex = 0;
-        let travelLevel = 1;
+<!-- 旅行 -->
+<div id="travel-page" class="page hidden">
+    <h1 class="title">🌍 猜一猜这是哪里</h1>
+    <div class="travel-container" id="travel-img-box">
+        <img id="travel-img" class="travel-img" alt="旅行地点">
+    </div>
+    <input type="text" id="travel-answer" placeholder="输入答案">
+    <p class="result" id="travel-result"></p>
+    <div class="travel-success" id="travel-success">全部答对，宝宝真棒 ❤️</div>
+    <button class="travel-success-btn" id="travel-success-btn" onclick="resetTravelQuiz()">返回主页</button>
+    <button class="func-btn" id="travel-submit-btn" onclick="checkTravelAnswer()">提交答案</button>
+    <button class="func-btn" id="travel-reset-btn" onclick="resetTravelQuiz()">返回主页</button>
+</div>
 
-        // 数据列表（从Python传入）
-        const loveWords = ['猎金·游戏', '时间之子', '酱园弄·悬案', '长安的荔枝', '浪浪山小妖怪'];
-        const movies = ['猎金·游戏', '时间之子', '酱园弄·悬案', '长安的荔枝', '浪浪山小妖怪', '捕风追影', '疯狂动物城2'];
+<!-- 情话弹窗 -->
+<div class="popup-overlay" id="popup-overlay"></div>
+<div class="love-popup hidden" id="love-popup">
+    <div class="popup-text" id="popup-text"></div>
+    <button class="popup-btn" onclick="closePopup()">确定</button>
+</div>
 
-        // 切换页面函数
-        function showPage(pageId) {
-            // 隐藏所有页面
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.add('hidden');
-            });
-            // 显示目标页面
-            document.getElementById(pageId).classList.remove('hidden');
-            // 重置输入框和结果
-            document.querySelectorAll('input').forEach(input => input.value = '');
-            document.querySelectorAll('.result').forEach(result => result.textContent = '');
+<script>
+    let wordIndex = 0;
+    let movieIndex = 0;
+    let travelLevel = 1;
+
+    const loveWords = ["猎金·游戏","时间之子","酱园弄·悬案","长安的荔枝","浪浪山小妖精"];
+    const movies = ["猎金·游戏","时间之子","酱园弄·悬案","长安的荔枝","浪浪山小妖精","捕风追影","疯狂动物城2"];
+
+    const movieImages = [
+        "https://raw.githubusercontent.com/17703522320/love/main/images/m1.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/m2.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/m3.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/m4.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/m5.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/m6.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/m7.jpg"
+    ];
+
+    const travelImages = [
+        "",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/j1.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/j2.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/j3.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/j4.jpg",
+        "https://raw.githubusercontent.com/17703522320/love/main/images/j5.jpg"
+    ];
+
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+        document.getElementById(pageId).classList.remove('hidden');
+
+        if(pageId === 'movie-page'){
+            movieIndex = 0;
+            document.getElementById('movie-text').textContent = movies[0];
+            document.getElementById('movie-img').src = movieImages[0];
+            document.getElementById('movie-next-btn').style.display = 'inline-block';
+            document.getElementById('movie-end-text').style.display = 'none';
+            document.getElementById('movie-img').style.display = 'block';
+            document.getElementById('movie-text').style.display = 'block';
         }
 
-        // 检查问答答案
-        function checkQuizAnswer() {
-            const answer = document.getElementById('quiz-answer').value.trim();
-            const result = document.getElementById('quiz-result');
-
-            if (answer === "301" || answer === "301天") {
-                result.textContent = "答对啦！今天是第301天哦 ❤️";
-            } else {
-                result.textContent = "回答错啦，小笨猪";
-            }
+        if(pageId === 'quiz-page'){
+            // 彻底修复：每次进入小测试，所有状态完全重置
+            document.getElementById('q1').classList.remove('hidden');
+            document.getElementById('q2').classList.add('hidden');
+            document.getElementById('q3').classList.add('hidden');
+            document.getElementById('ans1').value = '';
+            document.getElementById('quiz-result').innerText = ''; // 清空所有提示文字
+            document.getElementById('quiz-success').style.display = 'none'; // 隐藏成功提示
         }
 
-        // 显示下一句情话
-        function showNextWord() {
-            if (wordIndex < loveWords.length) {
-                alert(`甜甜的情话 💖\n\n${loveWords[wordIndex]}`);
-                wordIndex++;
-            } else {
-                alert("结束啦 💖\n\n所有情话都说完啦，我还爱你～");
-                wordIndex = 0; // 重置
-            }
+        if(pageId === 'travel-page'){
+            initTravelPage();
+            document.getElementById('travel-success').style.display = 'none';
+            document.getElementById('travel-success-btn').style.display = 'none';
+            document.getElementById('travel-submit-btn').style.display = 'inline-block';
+            document.getElementById('travel-reset-btn').style.display = 'inline-block';
+            document.getElementById('travel-img-box').style.display = 'block';
+            document.getElementById('travel-answer').style.display = 'block';
         }
+    }
 
-        // 显示下一部电影
-        function showNextMovie() {
-            if (movieIndex < movies.length) {
-                alert(`一起看过的电影 🎬\n\n${movies[movieIndex]}`);
-                movieIndex++;
-            } else {
-                alert("结束啦 🎬\n\n电影看完啦，我们去看未来吧～");
-                movieIndex = 0; // 重置
-            }
+    // 小测试逻辑
+    function checkQ1(){
+        let ans = document.getElementById('ans1').value.trim();
+        if(ans === "301" || ans === "301天"){
+            document.getElementById('quiz-result').innerText = "✅ 答对啦！下一题～";
+            document.getElementById('q1').classList.add('hidden');
+            document.getElementById('q2').classList.remove('hidden');
+        } else {
+            document.getElementById('quiz-result').innerText = "❌ 答错啦，小笨猪";
         }
+    }
 
-        // 检查旅行答题答案
-        function checkTravelAnswer() {
-            const answer = document.getElementById('travel-answer').value.trim();
-            const result = document.getElementById('travel-result');
-            const question = document.getElementById('travel-question');
-
-            // 清空输入框
-            document.getElementById('travel-answer').value = '';
-
-            switch(travelLevel) {
-                case 1:
-                    if (answer === "重庆") {
-                        result.textContent = "答对啦！下一题～";
-                        travelLevel = 2;
-                        question.textContent = "第2题：五岳之一，长空栈道，看日出";
-                    } else {
-                        result.textContent = "不对哦～再猜猜";
-                    }
-                    break;
-                case 2:
-                    if (answer === "华山") {
-                        result.textContent = "答对啦！下一题～";
-                        travelLevel = 3;
-                        question.textContent = "第3题：冰天雪地、大雪、东北";
-                    } else {
-                        result.textContent = "不对哦～再猜猜";
-                    }
-                    break;
-                case 3:
-                    if (answer === "东北") {
-                        result.textContent = "答对啦！下一题～";
-                        travelLevel = 4;
-                        question.textContent = "第4题：你可以自己加一个地方";
-                    } else {
-                        result.textContent = "不对哦～再猜猜";
-                    }
-                    break;
-                case 4:
-                    if (answer === "你想写的地方4") { // 替换成你的答案
-                        result.textContent = "答对啦！下一题～";
-                        travelLevel = 5;
-                        question.textContent = "第5题：最后一个地方啦";
-                    } else {
-                        result.textContent = "不对哦～再猜猜";
-                    }
-                    break;
-                case 5:
-                    if (answer === "你想写的地方5") { // 替换成你的答案
-                        result.textContent = "全部答对！爱你宝宝 ❤️";
-                        travelLevel = 1; // 重置
-                    } else {
-                        result.textContent = "不对哦～最后一题啦";
-                    }
-                    break;
-            }
+    function checkQ2(ans){
+        if(ans === 'B'){
+            document.getElementById('quiz-result').innerText = "✅ 答对啦！下一题～";
+            document.getElementById('q2').classList.add('hidden');
+            document.getElementById('q3').classList.remove('hidden');
+        } else {
+            document.getElementById('quiz-result').innerText = "❌ 答错啦";
         }
+    }
 
-        // 重置旅行答题
-        function resetTravelQuiz() {
-            travelLevel = 1;
-            document.getElementById('travel-question').textContent = "第1题：山城、火锅、8D魔幻城市";
-            showPage('home-page');
+    function checkQ3(ans){
+        if(ans === 'C'){
+            document.getElementById('quiz-result').innerText = "";
+            document.getElementById('q3').classList.add('hidden');
+            document.getElementById('quiz-success').style.display = "block";
+        } else {
+            document.getElementById('quiz-result').innerText = "❌ 答错啦";
         }
+    }
 
-        // 初始显示主页
+    // 情话弹窗
+    function showNextWord() {
+        const popup = document.getElementById('love-popup');
+        const popupText = document.getElementById('popup-text');
+        const overlay = document.getElementById('popup-overlay');
+
+        if (wordIndex < loveWords.length) {
+            popupText.textContent = `💖 ${loveWords[wordIndex]} 💖`;
+            wordIndex++;
+        } else {
+            popupText.textContent = "💖 所有情话都说完啦，我还爱你～ 💖";
+            wordIndex = 0;
+        }
+        popup.classList.remove('hidden');
+        overlay.style.display = 'block';
+    }
+
+    function closePopup() {
+        document.getElementById('love-popup').classList.add('hidden');
+        document.getElementById('popup-overlay').style.display = 'none';
+    }
+
+    // 电影
+    function showNextMovie(){
+        movieIndex++;
+        if(movieIndex < movies.length){
+            document.getElementById('movie-text').textContent = movies[movieIndex];
+            document.getElementById('movie-img').src = movieImages[movieIndex];
+        }else{
+            document.getElementById('movie-next-btn').style.display = 'none';
+            document.getElementById('movie-img').style.display = 'none';
+            document.getElementById('movie-text').style.display = 'none';
+            document.getElementById('movie-end-text').style.display = 'block';
+        }
+    }
+
+    // 旅行
+    function checkTravelAnswer(){
+        const answer = document.getElementById('travel-answer').value.trim();
+        document.getElementById('travel-answer').value = '';
+        if(travelLevel === 1 && answer === '重庆'){
+            document.getElementById('travel-result').textContent = '答对啦！下一题～';
+            travelLevel = 2;
+            document.getElementById('travel-img').src = travelImages[2];
+        }else if(travelLevel === 2 && answer === '华山'){
+            document.getElementById('travel-result').textContent = '答对啦！下一题～';
+            travelLevel = 3;
+            document.getElementById('travel-img').src = travelImages[3];
+        }else if(travelLevel === 3 && answer === '哈尔滨'){
+            document.getElementById('travel-result').textContent = '答对啦！下一题～';
+            travelLevel = 4;
+            document.getElementById('travel-img').src = travelImages[4];
+        }else if(travelLevel === 4 && answer === '延吉'){
+            document.getElementById('travel-result').textContent = '答对啦！下一题～';
+            travelLevel = 5;
+            document.getElementById('travel-img').src = travelImages[5];
+        }else if(travelLevel === 5 && answer === '沈阳'){
+            document.getElementById('travel-result').textContent = '';
+            document.getElementById('travel-img-box').style.display = 'none';
+            document.getElementById('travel-answer').style.display = 'none';
+            document.getElementById('travel-submit-btn').style.display = 'none';
+            document.getElementById('travel-reset-btn').style.display = 'none';
+            document.getElementById('travel-success').style.display = 'block';
+            document.getElementById('travel-success-btn').style.display = 'block';
+        }else{
+            document.getElementById('travel-result').textContent = '不对哦～再猜猜';
+        }
+    }
+
+    function initTravelPage(){
+        document.getElementById('travel-img').src = travelImages[1];
+    }
+
+    function resetTravelQuiz(){
+        travelLevel = 1;
         showPage('home-page');
-    </script>
+    }
+
+    // 初始页面
+    showPage('home-page');
+</script>
 </body>
 </html>
